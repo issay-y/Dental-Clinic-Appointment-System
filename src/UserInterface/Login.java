@@ -1,6 +1,6 @@
 package UserInterface;
 
-import Database.DatabaseLogin;
+import Database.DatabaseManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -32,7 +32,7 @@ public class Login {
                 String user = textField1.getText();
                 String pass = new String(passwordField1.getPassword());
 
-                DatabaseLogin manager = new DatabaseLogin();
+                DatabaseManager manager = new DatabaseManager();
                 int userId = manager.login(user, pass);
 
                 if (userId != -1) {
