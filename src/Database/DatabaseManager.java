@@ -230,4 +230,21 @@ public class DatabaseManager {
         }
     }
 
+    public int getPatientCount(String condition) {
+        int count = 0;
+        String query = "SELECT COUNT(*) FROM patients " + condition;
+
+        try (Connection conn = DatabaseConnector.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error counting patients: " + e.getMessage());
+        }
+        return count;
+    }
+
 }

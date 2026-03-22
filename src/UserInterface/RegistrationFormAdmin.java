@@ -36,8 +36,89 @@ public class RegistrationFormAdmin {
     private JPanel panelRegistrationSub;
     private JScrollPane scheduleScroll;
     private JPanel panelRegistrationButton;
+    private JPanel panelDashboard;
     private JFrame frame;
     private JPanel selectedPatientCard = null;
+
+
+    private JPanel createCard(String title, String value, Color accentColor) {
+        JPanel card = new JPanel();
+        card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
+        card.setBackground(Color.WHITE);
+
+        card.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createMatteBorder(0, 6, 0, 0, accentColor),
+                BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(new Color(225, 225, 225), 1),
+                        BorderFactory.createEmptyBorder(20, 25, 20, 25)
+                )
+        ));
+
+        card.setPreferredSize(new Dimension(260, 120));
+
+        JLabel lblTitle = new JLabel(title);
+        lblTitle.setFont(new Font("Century Gothic", Font.BOLD, 12));
+        lblTitle.setForeground(new Color(0xC9BDD));
+        lblTitle.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        JLabel lblValue = new JLabel(value);
+        lblValue.setFont(new Font("Century Gothic", Font.BOLD, 46));
+        lblValue.setForeground(new Color(40, 40, 40));
+        lblValue.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        card.add(lblTitle);
+        card.add(Box.createRigidArea(new Dimension(0, 5))); // Tight space between label and number
+        card.add(lblValue);
+
+        return card;
+    }
+
+    public void loadDashboard() {
+        panelDashboard.removeAll();
+        panelDashboard.setLayout(new BorderLayout()); // Using BorderLayout for top-to-bottom flow
+        panelDashboard.setBackground(new Color(227,241,255)); // A slightly softer, modern background color
+
+        JPanel headerPanel = new JPanel();
+        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
+        headerPanel.setBackground(new Color(227,241,255));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(40, 50, 30, 50));
+
+        JLabel lblHeading = new JLabel("Welcome to the Admin Portal");
+        lblHeading.setFont(new Font("Century Gothic", Font.BOLD, 32));
+        lblHeading.setForeground(new Color(0xC9BDD));
+
+        JLabel lblSubHeading = new JLabel("Let's make today a great day for our patients. Here is where we stand right now:");
+        lblSubHeading.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+        lblSubHeading.setForeground(new Color(100, 100, 100));
+
+        headerPanel.add(lblHeading);
+        headerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        headerPanel.add(lblSubHeading);
+
+        JPanel cardsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 0));
+        cardsPanel.setBackground(new Color(227,241,255));
+        cardsPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
+
+        DatabaseManager db = new DatabaseManager();
+
+        int totalPatients = db.getPatientCount("");
+        int completedCount = db.getPatientCount("WHERE status = 'Completed'");
+        int ongoingCount = db.getPatientCount("WHERE status = 'Scheduled'");
+
+        JPanel cardPatients = createCard("TOTAL PATIENTS", String.valueOf(totalPatients), new Color(0, 153, 219)); // Truema Blue
+        JPanel cardCompleted = createCard("COMPLETED", String.valueOf(completedCount), new Color(40, 167, 69));   // Success Green
+        JPanel cardOngoing = createCard("ON GOING", String.valueOf(ongoingCount), new Color(255, 152, 0));        // Alert Orange
+
+        cardsPanel.add(cardPatients);
+        cardsPanel.add(cardCompleted);
+        cardsPanel.add(cardOngoing);
+
+        panelDashboard.add(headerPanel, BorderLayout.NORTH);
+        panelDashboard.add(cardsPanel, BorderLayout.CENTER);
+
+        panelDashboard.revalidate();
+        panelDashboard.repaint();
+    }
 
     private JPanel createSimplifiedPatientCard(Map<String, String> patientData) {
         JPanel patientCard = new JPanel(new GridBagLayout());
@@ -203,10 +284,24 @@ public class RegistrationFormAdmin {
         }
 
         scheduleTable.setModel(model);
-        scheduleTable.getTableHeader().setFont(new Font("Century Gothic", Font.BOLD, 14));
+
+        JTableHeader header = scheduleTable.getTableHeader();
+        header.setDefaultRenderer(new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                label.setBackground(Color.WHITE); // Pure white background
+                label.setForeground(new Color(0, 153, 219)); // Truema Blue
+                label.setFont(new Font("Century Gothic", Font.BOLD, 14));
+                label.setHorizontalAlignment(JLabel.CENTER);
+                label.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(220, 220, 220))); // Clean bottom line
+                return label;
+            }
+        });
+
         scheduleTable.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         scheduleTable.setRowHeight(30);
-        scheduleTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS); // Fixes the right margin
+        scheduleTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
         scheduleTable.getColumnModel().getColumn(0).setMinWidth(0);
         scheduleTable.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -266,6 +361,11 @@ public class RegistrationFormAdmin {
         header.setBackground(Color.WHITE);
         header.setFont(new Font("Century Gothic", Font.BOLD, 14));
 
+        JTableHeader heading = scheduleTable.getTableHeader();
+        header.setForeground(new Color(0xC9BDD));
+        header.setBackground(Color.WHITE);
+        header.setFont(new Font("Century Gothic", Font.BOLD, 14));
+
         CardLayout cl = (CardLayout) cardPanel.getLayout();
         patientScroll.getVerticalScrollBar().setUnitIncrement(16);
 
@@ -292,6 +392,14 @@ public class RegistrationFormAdmin {
                 String currentFilter = (dateFilter.getSelectedItem() != null) ?
                         dateFilter.getSelectedItem().toString() : "Latest";
                 loadScheduleTable("Latest");
+            }
+        });
+
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadDashboard();
+                cl.show(cardPanel, "Card6");
             }
         });
 
@@ -508,6 +616,7 @@ public class RegistrationFormAdmin {
                         textField3.setText("");
                         textField4.setText("");
                         textField5.setText("");
+                        cl.show(cardPanel, "Card2");
                     } else {
                         JOptionPane.showMessageDialog(null, "Failed to save to database.");
                     }
@@ -559,6 +668,8 @@ public class RegistrationFormAdmin {
             loadScheduleTable(selected);
         });
 
+        loadDashboard();
         frame.setVisible(true);
+
     }
 }

@@ -17,9 +17,16 @@ public class EditPatient {
     private JButton updateButton;
     private JButton cancelButton;
     private int patientId;
-    private RegistrationFormAdmin mainUI;
+    private Object mainUI;
     private JFrame frame;
 
+    private void refreshMainList() {
+        if (mainUI instanceof RegistrationFormAdmin) {
+            ((RegistrationFormAdmin) mainUI).loadSimplifiedList();
+        } else if (mainUI instanceof RegistrationFormStaff) {
+            ((RegistrationFormStaff) mainUI).loadSimplifiedList();
+        }
+    }
 
     private void setupYearComboBoxes() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -111,9 +118,9 @@ public class EditPatient {
         }
     }
 
-    public EditPatient(int id, RegistrationFormAdmin mainUI) {
+    public EditPatient(int id, Object callerUI) {
         this.patientId = id;
-        this.mainUI = mainUI;
+        this.mainUI = callerUI;
 
         frame = new JFrame("Edit Patient #" + id);
         frame.setContentPane(panelEdit);
@@ -129,17 +136,15 @@ public class EditPatient {
         saveButton.addActionListener(e -> {
             saveChanges();
             frame.dispose();
-            mainUI.loadSimplifiedList();
+            refreshMainList(); // Using the new helper method
         });
 
         updateButton.addActionListener(e -> {
             saveChanges();
             frame.dispose();
-            mainUI.loadSimplifiedList();
+            refreshMainList(); // Using the new helper method
         });
 
         cancelButton.addActionListener(e -> frame.dispose());
     }
-
-
 }
