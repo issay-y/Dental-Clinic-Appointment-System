@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="panelUserAdmin" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="1608" height="692"/>
+      <xy x="20" y="20" width="1608" height="727"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -123,7 +123,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <grid id="504f7" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+                  <grid id="504f7" binding="panelStaffButton" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -219,7 +219,7 @@
                       <text value="PATIENT REGISTRATION"/>
                     </properties>
                   </component>
-                  <grid id="6f6d1" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="6f6d1" binding="panelRegistrationSub" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -237,7 +237,7 @@
                         </properties>
                         <border type="none"/>
                         <children>
-                          <grid id="20763" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+                          <grid id="20763" binding="panelRegistrationButton" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
                             <constraints>
                               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
                             </constraints>
@@ -279,7 +279,7 @@
                             <properties/>
                             <border type="none"/>
                             <children>
-                              <grid id="ef225" binding="card" layout-manager="GridBagLayout">
+                              <grid id="ef225" binding="patientCard" layout-manager="GridBagLayout">
                                 <constraints/>
                                 <properties/>
                                 <border type="none"/>
@@ -293,7 +293,7 @@
                   </grid>
                 </children>
               </grid>
-              <grid id="26be8" binding="panelSchedule" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="26be8" binding="panelSchedule" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="5">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <card name="Card3"/>
@@ -323,9 +323,11 @@
                       <text value="Filter by Date: "/>
                     </properties>
                   </component>
-                  <scrollpane id="dbf78">
+                  <scrollpane id="dbf78" binding="scheduleScroll">
                     <constraints>
-                      <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                        <preferred-size width="1050" height="-1"/>
+                      </grid>
                     </constraints>
                     <properties>
                       <background color="-1838593"/>
@@ -334,10 +336,24 @@
                     <children>
                       <component id="5d259" class="javax.swing.JTable" binding="scheduleTable">
                         <constraints/>
-                        <properties/>
+                        <properties>
+                          <autoResizeMode value="4"/>
+                          <fillsViewportHeight value="false"/>
+                        </properties>
                       </component>
                     </children>
                   </scrollpane>
+                  <component id="b919b" class="javax.swing.JComboBox" binding="dateFilter">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <model>
+                        <item value="Latest"/>
+                        <item value="Oldest"/>
+                      </model>
+                    </properties>
+                  </component>
                 </children>
               </grid>
               <grid id="f4aee" binding="panelCreateStaff" layout-manager="GridLayoutManager" row-count="12" column-count="15" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -491,7 +507,7 @@
                   </vspacer>
                 </children>
               </grid>
-              <grid id="e9c63" binding="panelCreatePatient" layout-manager="GridLayoutManager" row-count="22" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
+              <grid id="e9c63" binding="panelCreatePatient" layout-manager="GridLayoutManager" row-count="24" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <card name="Card5"/>
@@ -503,7 +519,7 @@
                 <children>
                   <component id="5412a" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="1" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <font name="Century Gothic" size="36" style="1"/>
@@ -513,7 +529,9 @@
                   </component>
                   <component id="53f09" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="3" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <preferred-size width="369" height="21"/>
+                      </grid>
                     </constraints>
                     <properties>
                       <font name="Century Gothic" size="16" style="1"/>
@@ -523,12 +541,12 @@
                   </component>
                   <component id="842a9" class="javax.swing.JTextField" binding="textField1" default-binding="true">
                     <constraints>
-                      <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="4" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="170" height="25"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <font name="Century Gothic" size="16" style="0"/>
+                      <font name="Century Gothic" size="14" style="0"/>
                     </properties>
                   </component>
                   <component id="da85c" class="javax.swing.JLabel">
@@ -553,12 +571,12 @@
                   </component>
                   <component id="394d0" class="javax.swing.JTextField" binding="textField2" default-binding="true">
                     <constraints>
-                      <grid row="6" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="6" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="170" height="25"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <font name="Century Gothic" size="16" style="0"/>
+                      <font name="Century Gothic" size="14" style="0"/>
                     </properties>
                   </component>
                   <component id="1f5ac" class="javax.swing.JLabel">
@@ -583,12 +601,12 @@
                   </component>
                   <component id="aeaac" class="javax.swing.JTextField" binding="textField4" default-binding="true">
                     <constraints>
-                      <grid row="12" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="12" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="170" height="25"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <font name="Century Gothic" size="16" style="0"/>
+                      <font name="Century Gothic" size="14" style="0"/>
                     </properties>
                   </component>
                   <component id="50b04" class="javax.swing.JLabel">
@@ -601,16 +619,6 @@
                       <text value="Contact Number: "/>
                     </properties>
                   </component>
-                  <component id="f0180" class="javax.swing.JTextField" binding="textField5" default-binding="true">
-                    <constraints>
-                      <grid row="14" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                        <preferred-size width="170" height="25"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <font name="Century Gothic" size="16" style="0"/>
-                    </properties>
-                  </component>
                   <component id="9e747" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -621,29 +629,9 @@
                       <text value="Appointment Date"/>
                     </properties>
                   </component>
-                  <component id="3a915" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Century Gothic" size="16" style="1"/>
-                      <foreground color="-16777216"/>
-                      <text value="Appointment Time: "/>
-                    </properties>
-                  </component>
-                  <component id="63f2d" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
-                    <constraints>
-                      <grid row="18" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                        <preferred-size width="170" height="25"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <font name="Century Gothic" size="16" style="0"/>
-                    </properties>
-                  </component>
                   <component id="b231" class="javax.swing.JButton" binding="submitButton" default-binding="true">
                     <constraints>
-                      <grid row="20" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="22" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <background color="-15950883"/>
@@ -654,12 +642,12 @@
                   </component>
                   <vspacer id="45a19">
                     <constraints>
-                      <grid row="19" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="17" column="5" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <vspacer id="436d3">
                     <constraints>
-                      <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="2" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <hspacer id="f916">
@@ -669,52 +657,47 @@
                   </hspacer>
                   <hspacer id="74be4">
                     <constraints>
-                      <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="6" column="7" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </hspacer>
                   <vspacer id="b8f9">
                     <constraints>
-                      <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="2" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <vspacer id="57ff8">
                     <constraints>
-                      <grid row="11" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="11" column="2" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <vspacer id="20250">
                     <constraints>
-                      <grid row="5" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="5" column="2" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <vspacer id="a3d40">
                     <constraints>
-                      <grid row="7" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="7" column="2" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <vspacer id="2a969">
                     <constraints>
-                      <grid row="13" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="13" column="2" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <vspacer id="c174f">
                     <constraints>
-                      <grid row="9" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="9" column="2" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                   <vspacer id="21a84">
                     <constraints>
-                      <grid row="15" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="15" column="2" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
-                  <hspacer id="b7a4">
-                    <constraints>
-                      <grid row="17" column="2" row-span="1" col-span="2" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </hspacer>
                   <grid id="6ba33" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
                     <constraints>
-                      <grid row="10" column="1" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="10" column="1" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <background color="-1838593"/>
@@ -735,6 +718,7 @@
                       <component id="98d" class="javax.swing.JTextField" binding="textField3" default-binding="true">
                         <constraints/>
                         <properties>
+                          <font name="Century Gothic" size="14" style="0"/>
                           <preferredSize width="100" height="34"/>
                         </properties>
                       </component>
@@ -752,7 +736,9 @@
                       <component id="ffa0a" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
                         <constraints/>
                         <properties>
-                          <font name="Century Gothic" size="16" style="0"/>
+                          <background color="-1"/>
+                          <font name="Century Gothic" size="14" style="0"/>
+                          <foreground color="-16777216"/>
                           <model>
                             <item value="Male"/>
                             <item value="Female"/>
@@ -763,7 +749,249 @@
                   </grid>
                   <vspacer id="106ec">
                     <constraints>
-                      <grid row="21" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <grid row="23" column="2" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="f0180" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+                    <constraints>
+                      <grid row="14" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="170" height="25"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="Century Gothic" size="14" style="0"/>
+                    </properties>
+                  </component>
+                  <component id="a05ac" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
+                    <constraints>
+                      <grid row="16" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <editable value="false"/>
+                      <font name="Century Gothic" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                      <model>
+                        <item value="January"/>
+                        <item value="February"/>
+                        <item value="March"/>
+                        <item value="April"/>
+                        <item value="May"/>
+                        <item value="June"/>
+                        <item value="July"/>
+                        <item value="August"/>
+                        <item value="September"/>
+                        <item value="October"/>
+                        <item value="November"/>
+                        <item value="December"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="ad535" class="javax.swing.JComboBox" binding="comboBox4" default-binding="true">
+                    <constraints>
+                      <grid row="16" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-327681"/>
+                      <editable value="false"/>
+                      <font name="Century Gothic" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                      <model>
+                        <item value="01"/>
+                        <item value="02"/>
+                        <item value="03"/>
+                        <item value="04"/>
+                        <item value="05"/>
+                        <item value="06"/>
+                        <item value="07"/>
+                        <item value="08"/>
+                        <item value="09"/>
+                        <item value="10"/>
+                        <item value="11"/>
+                        <item value="12"/>
+                        <item value="13"/>
+                        <item value="14"/>
+                        <item value="15"/>
+                        <item value="16"/>
+                        <item value="17"/>
+                        <item value="18"/>
+                        <item value="19"/>
+                        <item value="20"/>
+                        <item value="21"/>
+                        <item value="22"/>
+                        <item value="23"/>
+                        <item value="24"/>
+                        <item value="25"/>
+                        <item value="26"/>
+                        <item value="27"/>
+                        <item value="28"/>
+                        <item value="29"/>
+                        <item value="30"/>
+                        <item value="31"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="cec6e" class="javax.swing.JComboBox" binding="yearComboBox">
+                    <constraints>
+                      <grid row="16" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <editable value="false"/>
+                      <font name="Century Gothic" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                    </properties>
+                  </component>
+                  <vspacer id="59f9c">
+                    <constraints>
+                      <grid row="17" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="3a915" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Century Gothic" size="16" style="1"/>
+                      <foreground color="-16777216"/>
+                      <text value="Appointment Time: "/>
+                    </properties>
+                  </component>
+                  <component id="7fd43" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+                    <constraints>
+                      <grid row="18" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <font name="Century Gothic" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                      <model>
+                        <item value="8:00 AM"/>
+                        <item value="9:00 AM"/>
+                        <item value="10:00 AM"/>
+                        <item value="11:00 AM"/>
+                        <item value="12:00 PM"/>
+                        <item value="1:00 PM"/>
+                        <item value="2:00 PM"/>
+                        <item value="3:00 PM"/>
+                        <item value="4:00 PM"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <vspacer id="969c0">
+                    <constraints>
+                      <grid row="19" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="da3b8" class="javax.swing.JComboBox" binding="comboBox5" default-binding="true">
+                    <constraints>
+                      <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <font name="Century Gothic" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                      <model>
+                        <item value="January"/>
+                        <item value="February"/>
+                        <item value="March"/>
+                        <item value="April"/>
+                        <item value="May"/>
+                        <item value="June"/>
+                        <item value="July"/>
+                        <item value="August"/>
+                        <item value="September"/>
+                        <item value="October"/>
+                        <item value="November"/>
+                        <item value="December"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="6ad8e" class="javax.swing.JComboBox" binding="comboBox6" default-binding="true">
+                    <constraints>
+                      <grid row="8" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <font name="Century Gothic" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                      <model>
+                        <item value="01"/>
+                        <item value="02"/>
+                        <item value="03"/>
+                        <item value="04"/>
+                        <item value="05"/>
+                        <item value="06"/>
+                        <item value="07"/>
+                        <item value="08"/>
+                        <item value="09"/>
+                        <item value="10"/>
+                        <item value="11"/>
+                        <item value="12"/>
+                        <item value="13"/>
+                        <item value="14"/>
+                        <item value="15"/>
+                        <item value="16"/>
+                        <item value="17"/>
+                        <item value="18"/>
+                        <item value="19"/>
+                        <item value="20"/>
+                        <item value="21"/>
+                        <item value="22"/>
+                        <item value="23"/>
+                        <item value="24"/>
+                        <item value="25"/>
+                        <item value="26"/>
+                        <item value="27"/>
+                        <item value="28"/>
+                        <item value="29"/>
+                        <item value="30"/>
+                        <item value="31"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="f78e9" class="javax.swing.JComboBox" binding="birthYearComboBox">
+                    <constraints>
+                      <grid row="8" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <font name="Century Gothic" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                      <model/>
+                    </properties>
+                  </component>
+                  <component id="546b8" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="20" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Century Gothic" size="16" style="1"/>
+                      <foreground color="-16777216"/>
+                      <text value="Appointment Type:"/>
+                    </properties>
+                  </component>
+                  <component id="9dcf5" class="javax.swing.JComboBox" binding="comboBox7" default-binding="true">
+                    <constraints>
+                      <grid row="20" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-327681"/>
+                      <font name="Century Gothic" size="14" style="0"/>
+                      <foreground color="-16777216"/>
+                      <model>
+                        <item value="Check-up"/>
+                        <item value="Teeth Cleanings"/>
+                        <item value="Teeth Whitening"/>
+                        <item value="Dentures"/>
+                        <item value="Dental Cleaning"/>
+                        <item value="Dental Bonding"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <vspacer id="b9520">
+                    <constraints>
+                      <grid row="21" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                 </children>

@@ -119,6 +119,7 @@ public class DatabaseManager {
                 patient.put("name", rs.getString("name"));
                 patient.put("schedule_date", rs.getString("schedule_date"));
                 patient.put("schedule_time", rs.getString("schedule_time"));
+                patient.put("schedule_type", rs.getString("schedule_type"));
                 patient.put("status", rs.getString("status"));
                 patientList.add(patient);
             }
@@ -127,6 +128,106 @@ public class DatabaseManager {
         }
         return patientList;
     }
+
+    public boolean savePatient(String name, int age, String dob, String sex, String addr,
+                               String email, String contact, String sDate, String sTime, String sType) {
+        String sql = "INSERT INTO patients (name, age, date_birth, sex, home_address, email, contact_number, schedule_date, schedule_time, schedule_type, status) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Scheduled')";
+
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, name);
+            pstmt.setInt(2, age);
+            pstmt.setString(3, dob);
+            pstmt.setString(4, sex);
+            pstmt.setString(5, addr);
+            pstmt.setString(6, email);
+            pstmt.setString(7, contact);
+            pstmt.setString(8, sDate);
+            pstmt.setString(9, sTime);
+            pstmt.setString(10, sType);
+
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deletePatient(int id) {
+        String sql = "DELETE FROM patients WHERE id = ?";
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Map<String, String> getPatientById(int id) {
+        Map<String, String> data = new HashMap<>();
+        String sql = "SELECT * FROM patients WHERE id = ?";
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                data.put("name", rs.getString("name"));
+                data.put("age", String.valueOf(rs.getInt("age")));
+                data.put("dob", rs.getString("date_birth"));
+                data.put("sex", rs.getString("sex"));
+                data.put("address", rs.getString("home_address"));
+                data.put("email", rs.getString("email"));
+                data.put("contact", rs.getString("contact_number"));
+                data.put("sDate", rs.getString("schedule_date"));
+                data.put("sTime", rs.getString("schedule_time"));
+                data.put("sType", rs.getString("schedule_type"));
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return data;
+    }
+
+    public boolean updatePatientComplete(int id, String name, int age, String dob, String sex, String addr,
+                                         String email, String contact, String sDate, String sTime, String sType) {
+        String sql = "UPDATE patients SET name=?, age=?, date_birth=?, sex=?, home_address=?, email=?, " +
+                "contact_number=?, schedule_date=?, schedule_time=?, schedule_type=? WHERE id=?";
+
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, name);
+            pstmt.setInt(2, age);
+            pstmt.setString(3, dob);
+            pstmt.setString(4, sex);
+            pstmt.setString(5, addr);
+            pstmt.setString(6, email);
+            pstmt.setString(7, contact);
+            pstmt.setString(8, sDate);
+            pstmt.setString(9, sTime);
+            pstmt.setString(10, sType);
+            pstmt.setInt(11, id);
+
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updatePatientStatus(int id, String status) {
+        String sql = "UPDATE patients SET status = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, status);
+            pstmt.setInt(2, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
-
-

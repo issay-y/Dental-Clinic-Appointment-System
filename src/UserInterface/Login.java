@@ -17,14 +17,14 @@ public class Login {
     private JFrame frame;
 
     public Login() {
-            frame = new JFrame();
-            frame.setTitle("Truema Dental Clinic"); //sets title of frame
-            frame.setContentPane(this.panel1); //connect the form to the java file
-            frame.setSize(520, 500); //sets the dimension of the frame
-            frame.setLocationRelativeTo(null); //location of the frame
-            frame.setResizable(false);//prevents frame from being resized
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //exit out of application
-           // visibility of ui
+        frame = new JFrame();
+        frame.setTitle("Truema Dental Clinic");
+        frame.setContentPane(this.panel1);
+        frame.setSize(520, 500);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         LOGINButton.addActionListener(new ActionListener() {
             @Override
@@ -38,20 +38,19 @@ public class Login {
                 if (userId != -1) {
                     String welcomeMessage;
 
-                    if (userId == 1) { // Assuming ID 1 is the Admin
+                    if (userId == 1) {
                         welcomeMessage = "Welcome Admin " + user + "!";
                         JOptionPane.showMessageDialog(panel1, welcomeMessage, "Success", JOptionPane.INFORMATION_MESSAGE);
                         new RegistrationFormAdmin();
-                    } else { // All other valid IDs are Staff
+                    } else {
                         welcomeMessage = "Welcome Staff " + user + "!";
                         JOptionPane.showMessageDialog(panel1, welcomeMessage, "Success", JOptionPane.INFORMATION_MESSAGE);
                         new RegistrationFormStaff();
                     }
                     disposeCurrentFrame();
                 } else {
-                    // Login failed
                     JOptionPane.showMessageDialog(panel1, "Invalid Username or Password", "Login Failed", JOptionPane.ERROR_MESSAGE);
-                    passwordField1.setText(""); // Clear the password field for a retry
+                    passwordField1.setText("");
                 }
             }
         });
@@ -65,7 +64,7 @@ public class Login {
         }
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Login());
     }
 }
